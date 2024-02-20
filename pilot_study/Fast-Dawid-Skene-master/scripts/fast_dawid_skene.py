@@ -27,12 +27,13 @@ import os
 import sys
 import numpy as np
 
+# python scripts/fast_dawid_skene.py --dataset_path 'data\lab_data_processed' --output 'results\test.csv' --algorithm FDS --dataset '1_crowd.csv'
 
 def main():
     parser = argparse.ArgumentParser(
         description='Run the Dawid-Skene, Fast Dawid-Skene, the Hybrid, or the Majority Voting Algorithm')
     parser.add_argument('--dataset', type=str, required=True,
-                        help='Name of the dataset to use')
+                        help='Name of the dataset to use, e.g. crowd.csv')
     parser.add_argument('--k', default=0, type=int, required=False,
                         help='Number of annotators to use. Each data point must have at least K annotators. If more annotators are available, the first K annotators are used. If K = 0, then all available annotations for each data point are used. Default is 0')
     parser.add_argument('--algorithm', type=str, choices=['DS', 'FDS', 'H', 'MV'], required=True,

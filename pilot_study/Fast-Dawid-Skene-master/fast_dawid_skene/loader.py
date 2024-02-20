@@ -48,7 +48,7 @@ class DataLoader:
         if crowd_annotations_path is not None:
             self.crowd_path = crowd_annotations_path
         else:
-            self.crowd_path = os.path.join(self.data_path, 'crowd.csv')
+            self.crowd_path = os.path.join(self.data_path, dataset)
         assert self.k >= 0, "Number of annotators must be a positive integer, or 0 for allowing a variable number of annotators"
         assert os.path.exists(
             self.crowd_path), self.crowd_path + " does not exist!"

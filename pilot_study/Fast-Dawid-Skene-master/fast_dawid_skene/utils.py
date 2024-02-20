@@ -30,7 +30,7 @@ import numpy as np
 def to_csv(result, output_path, question_dict=None, annotation_dict=None, delimiter=','):
     output_dir = os.path.dirname(output_path)
     assert os.path.exists(output_dir), output_dir + " does not exist!"
-    output_file = open(output_path, 'wb')
+    output_file = open(output_path, 'w', newline='')
     output_writer = csv.writer(output_file, delimiter=delimiter)
     for index, annotation in np.ndenumerate(result):
         question = index[0]

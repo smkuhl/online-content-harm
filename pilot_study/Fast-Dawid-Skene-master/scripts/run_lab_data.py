@@ -22,7 +22,7 @@ for filename in os.listdir(start_dir):
         df = df.iloc[:, 1:] # first column is the indices
         columns_with_nan = df.columns[df.isna().any()].tolist()
         df = df.drop(columns=columns_with_nan)
-        args = ['-r', 'yes']
+        args = ['-r', 'yes', '-d', 'yes']
         kappa = fleiss_kappa.main(df)
         kappa_scores.append(kappa)
         
@@ -42,11 +42,12 @@ for filename in os.listdir(start_dir):
             pred_series = p_df['Annotation'].reset_index(drop=True)
             matches = true_series == pred_series
             accuracy = matches.mean()
-            print(accuracy)
+            # print(accuracy)
             acc.append(accuracy)
             
         
 k_score_df['Score'] = kappa_scores
+print('average kappa score: ' + str(sum(kappa_scores)/len(kappa_scores)))
 k_score_df.to_csv("results\lab_kappa_score.csv", ",")
 acc_df['Participant'] = range(num_participants)
 acc_df['Accuracy'] = acc
